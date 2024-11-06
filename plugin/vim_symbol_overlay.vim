@@ -6,9 +6,9 @@
 " Last Change:  2024-11-06
 " Maintainer:   Vlad Turcuman
 
-" if exists("g:loaded_vim_symbol_overlay")
-"    finish
-" endif
+if exists("g:loaded_vim_symbol_overlay")
+	finish
+endif
 let g:loaded_vim_symbol_overlay = 1
 
 
