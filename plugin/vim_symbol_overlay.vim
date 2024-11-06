@@ -13,4 +13,5 @@ let g:loaded_vim_symbol_overlay = 1
 
 
 command! -nargs=0 SymbolOverlay call vim_symbol_overlay#SymbolOverlay()
+command! -nargs=0 SymbolOverlayClear call vim_symbol_overlay#Clear()
     

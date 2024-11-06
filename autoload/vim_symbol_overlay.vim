@@ -10,6 +10,13 @@ highlight SymbolOverlay6 ctermfg=black ctermbg=LightGreen
 highlight SymbolOverlay7 ctermfg=black ctermbg=LightCyan
 highlight SymbolOverlay8 ctermfg=black ctermbg=LightBlue
 
+function! vim_symbol_overlay#MaybeInit()
+	if !exists("b:symbol_hist") 
+		let b:symbol_hist = []
+		let b:unassigned_colors = [4, 0, 1, 2, 3, 5, 6, 7, 8]
+		let b:symbol_to_color = {}
+	endif
+endfunction
 
 function! vim_symbol_overlay#Highlight(symbol)
 	let l:color_id = b:unassigned_colors[0]
@@ -33,11 +40,7 @@ function! vim_symbol_overlay#SymbolOverlay()
 	if l:symbol is# '' 
 		return
         endif	       
-	if !exists("b:symbol_hist") 
-		let b:symbol_hist = []
-		let b:unassigned_colors = [4, 0, 1, 2, 3, 5, 6, 7, 8]
-		let b:symbol_to_color = {}
-	endif
+	call vim_symbol_overlay#MaybeInit()
 	if has_key(b:symbol_to_color, l:symbol)
 		call vim_symbol_overlay#RemoveHighlight(l:symbol)
 	else 	
@@ -48,6 +51,16 @@ function! vim_symbol_overlay#SymbolOverlay()
 		call vim_symbol_overlay#Highlight(l:symbol)
 	endif
 endfunction
+
+
+function! vim_symbol_overlay#Clear()
+	call vim_symbol_overlay#MaybeInit()
+	while len(b:symbol_hist) > 0
+		call vim_symbol_overlay#RemoveHighlight(b:symbol_hist[0])
+	endwhile
+
+endfunction
+
 
 
 
