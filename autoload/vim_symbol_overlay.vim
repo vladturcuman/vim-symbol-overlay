@@ -6,8 +6,9 @@ highlight SymbolOverlay2 ctermfg=black ctermbg=DarkRed
 highlight SymbolOverlay3 ctermfg=black ctermbg=DarkCyan
 highlight SymbolOverlay4 ctermfg=black ctermbg=DarkYellow
 highlight SymbolOverlay5 ctermfg=black ctermbg=DarkMagenta
-highlight SymbolOverlay6 ctermfg=black ctermbg=LightMagenta
-highlight SymbolOverlay7 ctermfg=black ctermbg=LightGreen
+highlight SymbolOverlay6 ctermfg=black ctermbg=LightGreen
+highlight SymbolOverlay7 ctermfg=black ctermbg=LightCyan
+highlight SymbolOverlay8 ctermfg=black ctermbg=LightBlue
 
 
 function! vim_symbol_overlay#Highlight(symbol)
@@ -34,7 +35,7 @@ function! vim_symbol_overlay#SymbolOverlay()
         endif	       
 	if !exists("b:symbol_hist") 
 		let b:symbol_hist = []
-		let b:unassigned_colors = [4, 0, 1, 2, 3, 5, 6, 7]
+		let b:unassigned_colors = [4, 0, 1, 2, 3, 5, 6, 7, 8]
 		let b:symbol_to_color = {}
 	endif
 	if has_key(b:symbol_to_color, l:symbol)
