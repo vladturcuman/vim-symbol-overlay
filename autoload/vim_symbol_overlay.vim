@@ -56,14 +56,6 @@ function! vim_symbol_overlay#SymbolOverlay()
 	endif
 endfunction
 
-
-function! vim_symbol_overlay#Clear()
-	call vim_symbol_overlay#MaybeInit()
-	while len(b:symbol_hist) > 0
-		call vim_symbol_overlay#RemoveHighlight(b:symbol_hist[0])
-	endwhile
-endfunction
-
 function! vim_symbol_overlay#Clear()
 	call vim_symbol_overlay#MaybeInit()
 	while len(b:symbol_hist) > 0
