@@ -25,6 +25,8 @@ function! vim_symbol_overlay#Highlight(symbol)
 	let b:symbol_to_color[a:symbol] = l:color_id
 	call filter(b:unassigned_colors, 'v:val !~ l:color_id')
 	call add(b:symbol_hist, a:symbol)
+	let @/ = '\<' . a:symbol . '\>'
+	execute "normal! :nohlsearch<CR>"
 endfunction
 
 function! vim_symbol_overlay#RemoveHighlight(symbol)
@@ -33,6 +35,9 @@ function! vim_symbol_overlay#RemoveHighlight(symbol)
 	unlet b:symbol_to_color[a:symbol]
 	call filter(b:symbol_hist, 'v:val !~ a:symbol')
 	call add(b:unassigned_colors, l:color_id)
+	if @/ == '\<' . a:symbol . '\>'
+		let @/ = ""
+	endif
 endfunction
 
 function! vim_symbol_overlay#SymbolOverlay()
@@ -47,7 +52,6 @@ function! vim_symbol_overlay#SymbolOverlay()
 		if len(b:unassigned_colors) == 0 
 			call vim_symbol_overlay#RemoveHighlight(b:symbol_hist[0])
 		endif
-
 		call vim_symbol_overlay#Highlight(l:symbol)
 	endif
 endfunction
@@ -58,9 +62,13 @@ function! vim_symbol_overlay#Clear()
 	while len(b:symbol_hist) > 0
 		call vim_symbol_overlay#RemoveHighlight(b:symbol_hist[0])
 	endwhile
-
 endfunction
 
-
+function! vim_symbol_overlay#Clear()
+	call vim_symbol_overlay#MaybeInit()
+	while len(b:symbol_hist) > 0
+		call vim_symbol_overlay#RemoveHighlight(b:symbol_hist[0])
+	endwhile
+endfunction
 
 
