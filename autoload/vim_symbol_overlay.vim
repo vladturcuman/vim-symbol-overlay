@@ -1,8 +1,7 @@
-
 " defining colors
 highlight SymbolOverlay0 ctermfg=black ctermbg=DarkBlue
 highlight SymbolOverlay1 ctermfg=black ctermbg=DarkGreen
-highlight SymbolOverlay2 ctermfg=black ctermbg=DarkRed
+highlight SymbolOverlay2 ctermfg=white ctermbg=DarkRed
 highlight SymbolOverlay3 ctermfg=black ctermbg=DarkCyan
 highlight SymbolOverlay4 ctermfg=black ctermbg=DarkYellow
 highlight SymbolOverlay5 ctermfg=black ctermbg=DarkMagenta
@@ -62,5 +61,3 @@ function! vim_symbol_overlay#Clear()
 		call vim_symbol_overlay#RemoveHighlight(b:symbol_hist[0])
 	endwhile
 endfunction
-
-
