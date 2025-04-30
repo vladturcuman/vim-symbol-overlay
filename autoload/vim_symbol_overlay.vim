@@ -28,6 +28,7 @@ function! vim_symbol_overlay#Highlight(symbol)
     execute "normal! :nohlsearch<CR>"
 endfunction
 
+
 function! vim_symbol_overlay#RemoveHighlight(symbol)
     let l:color_id = b:symbol_to_color[a:symbol]
     silent! call matchdelete(123 + l:color_id)
